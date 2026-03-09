@@ -44,7 +44,7 @@ export default function Sidebar() {
 
           {/* Toggle button */}
           <button
-            className="bg-transparent border-none cursor-pointer p-0.5 flex items-center justify-center rounded text-t2 hover:bg-hover flex-shrink-0"
+            className="bg-transparent border-none cursor-pointer p-0.5 flex items-center justify-center rounded text-t2 hover:bg-hover shrink-0"
             onClick={() => setCollapsed((v) => !v)}
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -125,7 +125,7 @@ export default function Sidebar() {
                 collapsed ? "p-1" : "px-1.5 py-1"
               }`}
             >
-              <div className="w-6 h-6 rounded-full bg-green-300 text-t1 text-xs font-semibold flex items-center justify-center flex-shrink-0">P</div>
+              <div className="w-6 h-6 rounded-full bg-green-300 text-t1 text-xs font-semibold flex items-center justify-center shrink-0">P</div>
               {!collapsed && (
                 <>
                   <span className="text-sm text-t1 whitespace-nowrap">Pulse</span>

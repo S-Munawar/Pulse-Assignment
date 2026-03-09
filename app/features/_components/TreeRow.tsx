@@ -55,7 +55,7 @@ export function TreeRow({
           <div className="flex items-center ml-auto mr-2 gap-1.5 text-t2 text-xs font-medium opacity-0 group-hover:opacity-100">
             <div
               className="flex gap-1 px-1 py-1 bg-white border border-gray-200 rounded-lg hover:bg-hover shadow-[0_6px_16px_rgba(0,0,0,0.12)]"
-              onClick={(e) => { e.stopPropagation(); detailFeature && onSelect({ ...detailFeature, title: feature.title }); }}
+              onClick={(e) => { e.stopPropagation(); if (detailFeature) onSelect({ ...detailFeature, title: feature.title }); }}
             >
               <OpenIcon />
               open

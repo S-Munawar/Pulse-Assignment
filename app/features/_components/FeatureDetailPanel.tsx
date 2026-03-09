@@ -80,21 +80,6 @@ const SENTIMENT_BORDER: Record<string, string> = {
   neutral: "#DEDEDE",
 };
 
-// ─── Star Sentiment ───────────────────────────────────────────────────────────
-
-function SentimentBar({ score }: { score: number }) {
-  const pct = (score / 5) * 100;
-  const color = score >= 4 ? "#4CAF50" : score >= 3 ? "#C59937" : "#D45867";
-  return (
-    <div className="flex items-center gap-1.5">
-      <div className="flex-1 h-[5px] bg-hover rounded-full overflow-hidden">
-        <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
-      </div>
-      <span className="text-[12px] font-semibold" style={{ color }}>{score.toFixed(1)}</span>
-    </div>
-  );
-}
-
 // ─── Avatar ───────────────────────────────────────────────────────────────────
 
 function Avatar({ initials, color, size = 28 }: { initials: string; color: string; size?: number }) {
@@ -196,7 +181,7 @@ function OverviewTab({ feature, onTabSwitch }: { feature: Feature; onTabSwitch: 
         <div className="flex flex-col gap-2">
           {topInsights.map((ins) => (
             <div key={ins.id} className="bg-white border border-line border-l-[3px] rounded-lg px-[14px] py-3" style={{ borderLeftColor: SENTIMENT_BORDER[ins.sentiment] }}>
-              <p className="text-[13px] text-t1 leading-[1.6] m-0 mb-2.5 italic line-clamp-2">"{ins.text}"</p>
+              <p className="text-[13px] text-t1 leading-[1.6] m-0 mb-2.5 italic line-clamp-2">&ldquo;{ins.text}&rdquo;</p>
               <div className="flex items-center gap-1.5 flex-wrap">
                 <Avatar initials={ins.customer.split(" ").map((n) => n[0]).join("").slice(0, 2)} color="#888" size={20} />
                 <span className="text-[12px] font-medium text-t2">{ins.customer} · {ins.company}</span>
@@ -310,7 +295,7 @@ function InsightsTab({ insights }: { insights: Insight[] }) {
               <InsightTypeBadge type={ins.type} />
               <span className="text-[11px] text-t3 ml-auto">{ins.date}</span>
             </div>
-            <p className="text-[13px] text-t1 leading-[1.6] m-0 mb-2.5 italic">"{ins.text}"</p>
+            <p className="text-[13px] text-t1 leading-[1.6] m-0 mb-2.5 italic">&ldquo;{ins.text}&rdquo;</p>
             <div className="flex items-center justify-between gap-2 flex-wrap">
               <div className="flex items-center gap-1.5 text-[12px] text-t2">
                 <Avatar initials={ins.customer.split(" ").map((n) => n[0]).join("").slice(0, 2)} color="#888" size={20} />
@@ -572,7 +557,7 @@ function ExperimentsTab({ experiments, featureTitle }: { experiments: Experiment
       </div>
 
       {localExperiments.length === 0 && !generating && (
-        <div className="text-center py-8 px-4 text-[13px] text-t3">No experiments yet. Click "Generate Survey" to create one.</div>
+        <div className="text-center py-8 px-4 text-[13px] text-t3">No experiments yet. Click &ldquo;Generate Survey&rdquo; to create one.</div>
       )}
 
       {localExperiments.map((exp) => (
@@ -780,7 +765,8 @@ function CopilotDrawer({ feature, onClose }: { feature: Feature; onClose: () => 
 
   const sendMessage = (text: string) => {
     if (!text.trim()) return;
-    const userMsg: CopilotMessage = { id: Date.now().toString(), role: "user", text };
+    const msgId = crypto.randomUUID();
+    const userMsg: CopilotMessage = { id: msgId, role: "user", text };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setIsTyping(true);
@@ -790,7 +776,7 @@ function CopilotDrawer({ feature, onClose }: { feature: Feature; onClose: () => 
         COPILOT_RESPONSES[text] ||
         `I've analysed **${feature.title.slice(0, 40)}…** and related feedback. Based on ${feature.insights.length} insights from customers like ${feature.customers[0]?.company || "your top accounts"}, here's what I found:\n\nThe key theme is **${feature.tags[0] || "product improvement"}** — with ${feature.metrics.totalRequests} requests totalling ${feature.metrics.totalARR} ARR impact. I'd recommend prioritising the top 3 customer requests from ${feature.customers.slice(0, 2).map((c) => c.company).join(" and ")}.`;
 
-      const aiMsg: CopilotMessage = { id: (Date.now() + 1).toString(), role: "ai", text: responseText };
+      const aiMsg: CopilotMessage = { id: crypto.randomUUID(), role: "ai", text: responseText };
       setMessages((prev) => [...prev, aiMsg]);
       setIsTyping(false);
     }, 1500);
