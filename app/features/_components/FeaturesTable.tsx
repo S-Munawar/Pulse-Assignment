@@ -2,7 +2,7 @@
 
 import type { Feature } from "../../lib/mockData";
 import { TreeRow } from "./TreeRow";
-import { PlusIcon } from "../../components/Icons";
+import {NavFeaturesIcon, PlusIcon } from "../../components/Icons";
 import { type FlatRow, COL_META } from "../../lib/treeUtils";
 
 interface FeaturesTableProps {
@@ -27,10 +27,13 @@ export function FeaturesTable({ flatRows, effectiveCols, expandedFolders, toggle
             {effectiveCols.has("arr") && <col style={{ width: COL_META.find(c => c.key === "arr")!.width }} />}
           </colgroup>
           <thead>
-            <tr className="divide-x divide-line border-b border-line bg-grey">
+            <tr className="divide-x bg-grey-bg divide-line border-b border-line bg-grey">
               <th className="py-2.5 px-2 text-left text-xs text-t3 font-semibold tracking-wide">
                 <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                  <NavFeaturesIcon />
                   Folders, sub-folders, features
+                  </div>
                   <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-white text-t3 cursor-pointer hover:bg-hover transition-colors shadow-[0_2px_12px_0_rgba(0,0,0,0.04)]">
                     <PlusIcon />
                   </div>
