@@ -131,6 +131,30 @@ export function DownloadIcon() {
   );
 }
 
+export function OpenIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect 
+    x="3" 
+    y="4" 
+    width="14" 
+    height="12" 
+    rx="3" 
+    stroke="#666666" 
+    stroke-width="1.5"
+  />
+  <rect 
+    x="5.5" 
+    y="6" 
+    width="9" 
+    height="4" 
+    rx="1" 
+    fill="#666666"
+  />
+</svg>
+  );
+}
+
 // ─── General actions ──────────────────────────────────────────────────────────
 
 export function CloseIcon({ className }: { className?: string }) {
