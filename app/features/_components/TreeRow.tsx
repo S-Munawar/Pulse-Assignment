@@ -1,7 +1,8 @@
 "use client";
-import { type Feature, formatARR, type TreeFeature, features } from "../lib/mockData";
-import { FlatRow, aggregate, computeFolderStatus, AvatarStack } from "../features/page";
-import { FolderIcon, FeatureDocIcon, StatusIcon, ChevronRightIcon, OpenIcon, DotsVerticalIcon } from "./Icons";
+import { type Feature, formatARR, type TreeFeature, features } from "../../lib/mockData";
+import { type FlatRow, aggregate, computeFolderStatus } from "../../lib/treeUtils";
+import { AvatarStack } from "./AvatarStack";
+import { FolderIcon, FeatureDocIcon, StatusIcon, ChevronRightIcon, OpenIcon, DotsVerticalIcon } from "../../components/Icons";
 
 // ─── Tree Row ─────────────────────────────────────────────────────────────────
 export function TreeRow({

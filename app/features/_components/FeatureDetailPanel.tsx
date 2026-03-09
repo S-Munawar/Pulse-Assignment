@@ -10,7 +10,7 @@ import type {
   ActivityItem,
   InsightType,
   SourceType,
-} from "../lib/mockData";
+} from "../../lib/mockData";
 import {
   StatusIcon,
   AIStarGradientIcon,
@@ -32,7 +32,7 @@ import {
   NotifAssignmentIcon,
   NotifMentionIcon,
   NotifExperimentIcon,
-} from "./Icons";
+} from "../../components/Icons";
 
 // ─── Source Badge ─────────────────────────────────────────────────────────────
 
