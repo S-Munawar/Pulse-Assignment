@@ -3,6 +3,27 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Design system tokens */
+  --grey-containers: #FAFAFA;
+  --line-separator: #ECECEC;
+  --line-separator-dark: #DEDEDE;
+  --font-primary: #333;
+  --font-secondary: #666;
+  --font-tertiary: #888;
+  --hover-grey: #F4F4F4;
+  --secondary-selected: #E8E8E8;
+  --border-opacity: rgba(0, 0, 0, 0.10);
+
+  --space-xs: 2px;
+  --space-sm: 4px;
+  --space-md: 8px;
+  --space-lg: 20px;
+  --radius-sm: 4px;
+
+  --color-violet-light: rgba(120, 110, 220, 0.15);
+  --color-red-light: rgba(212, 88, 103, 0.15);
+  --color-blue-light: rgba(68, 126, 223, 0.15);
 }
 
 @theme inline {
@@ -10,6 +31,27 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* Design system color tokens */
+  --color-brand: #2170F4;
+  --color-brand-violet: #796FEC;
+  --color-grey-bg: #FAFAFA;
+  --color-line: #ECECEC;
+  --color-line-dk: #DEDEDE;
+  --color-t1: #333333;
+  --color-t2: #666666;
+  --color-t3: #888888;
+  --color-hover: #F4F4F4;
+  --color-sel: #E8E8E8;
+  --color-done: #447EDF;
+  --color-progress: #C59937;
+  --color-backlog: #D47E5F;
+  /* Custom animations available as animate-* utilities */
+  --animate-slide-in: fdp-slide-in 0.22s ease;
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-spin-icon: spin-icon 1s linear infinite;
+  --animate-dot-bounce: dot-bounce 1.2s infinite;
+  --animate-dot-pulse: dot-pulse 1.2s infinite;
+  --animate-card-appear: card-appear 0.4s ease;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +61,43 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  margin: 0;
+}
+
+@keyframes fdp-slide-in {
+  from { transform: translateX(30px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes spin-icon {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+  40%            { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes dot-pulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40%            { opacity: 1;   transform: scale(1.1); }
+}
+
+@keyframes card-appear {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
